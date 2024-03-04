@@ -7,9 +7,9 @@ const Homepage = () => {
   return (
     <>
       <Main />
-      <ShowsRow rowID='1' title='Popular' fetchURL={requests.requestPopular}/>
+      <ShowsRow rowID='1' title='Top Rated' fetchURL={requests.requestTopRated}/>
       <ShowsRow rowID='2' title='Trending' fetchURL={requests.requestTrending}/>
-      <ShowsRow rowID='3' title='UpComing' fetchURL={requests.requestUpcoming}/>
+      <ShowsRow rowID='3' title='Now Playing' fetchURL={requests.requestNowPlaying}/>
     </>
   )
 }

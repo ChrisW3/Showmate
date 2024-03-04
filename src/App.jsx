@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Account from "./pages/Account";
 import { AuthContextProvider } from "./contents/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
         </Routes>
+        <Footer />
       </AuthContextProvider>
     </>
   );
