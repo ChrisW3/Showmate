@@ -1,4 +1,4 @@
-const tmdbKey = '399458558731a6f5c6e5e0b67b34bdcd'
+const tmdbKey = import.meta.env.VITE_TMDB_KEY
 
 const tmdbRequests = {
     requestTopRated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${tmdbKey}&language=en-US&page=1`,

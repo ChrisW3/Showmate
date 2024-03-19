@@ -5,7 +5,7 @@ import { db } from '../firebase'
 import { doc, onSnapshot } from 'firebase/firestore';
 import AccMovie from './AccMovie';
 
-const SavedShows = ({ rowID }) => {
+const WatchlistShows = ({ rowID }) => {
     const [movies, setMovies] = useState([])
     const { user } = UserAuth();
 
@@ -21,14 +21,14 @@ const SavedShows = ({ rowID }) => {
 
     useEffect(() => {
         onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
-            setMovies(doc.data()?.likedShows.reverse());
+            setMovies(doc.data()?.watchlistShows.reverse());
         })
     }, [user?.email]);
 
     return (
         <div>
-            <h2 className="text-white font-bold md:text-xl p-4">Liked Shows</h2>
-            <div className="relative flex items-center group z-40">
+            <h2 className="text-white font-bold md:text-xl p-4">Watchlisted Shows</h2>
+            <div className="relative flex items-center group">
                 <MdChevronLeft
                     onClick={slideLeft}
                     className="bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
@@ -39,7 +39,7 @@ const SavedShows = ({ rowID }) => {
                     className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
                 >
                     {movies.map((item, id) => (
-                        <AccMovie key={id} item_id={item.id} img={item.img} type={'like'} />
+                        <AccMovie key={id} item_id={item.id} img={item.img} type={'watchlist'}/>
                     ))}
                 </div>
                 <MdChevronRight
@@ -52,4 +52,4 @@ const SavedShows = ({ rowID }) => {
     )
 }
 
-export default SavedShows
+export default WatchlistShows
