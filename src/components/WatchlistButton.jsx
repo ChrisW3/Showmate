@@ -9,11 +9,11 @@ const WatchlistButton = ({ item }) => {
     const [watchlistMovieList, setWatchlistMovieList] = useState([])
 
     const { user } = UserAuth();
-    const movieId = doc(db, 'users', `${user?.email}`)
+    const movieId = doc(db, 'users', `${user?.uid}`)
 
     const watchlistShow = async (e) => {
         e.stopPropagation();
-        if (user?.email) {
+        if (user?.uid) {
             setWatchlist(!watchlist)
             await updateDoc(movieId, {
                 watchlistShows: arrayUnion({
@@ -28,12 +28,12 @@ const WatchlistButton = ({ item }) => {
     }
 
     useEffect(() => {
-        onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
+        onSnapshot(doc(db, 'users', `${user?.uid}`), (doc) => {
             setWatchlistMovieList(doc.data()?.watchlistShows);
         })
-    }, [user?.email]);
+    }, [user?.uid]);
 
-    const movieRef = doc(db, 'users', `${user?.email}`)
+    const movieRef = doc(db, 'users', `${user?.uid}`)
     const removeWatchlistShow = async (passedID) => {
         try {
             const result = watchlistMovieList.filter((item) => item.id !== passedID)

@@ -29,16 +29,16 @@ const AccMovie = ({ item_id, img, type }) => {
     }
 
     useEffect(() => {
-        onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
+        onSnapshot(doc(db, 'users', `${user?.uid}`), (doc) => {
             if (type === 'like') {
                 setMovies(doc.data()?.likedShows);
             } else {
                 setMovies(doc.data()?.watchlistShows);
             }
         });
-    }, [user?.email]);
+    }, [user?.uid]);
 
-    const movieRef = doc(db, 'users', `${user?.email}`)
+    const movieRef = doc(db, 'users', `${user?.uid}`)
 
     const deleteShow = async (passedID) => {
         try {

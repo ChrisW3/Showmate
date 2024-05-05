@@ -20,10 +20,10 @@ const SavedShows = ({ rowID }) => {
     };
 
     useEffect(() => {
-        onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
+        onSnapshot(doc(db, 'users', `${user?.uid}`), (doc) => {
             setMovies(doc.data()?.likedShows.reverse());
         })
-    }, [user?.email]);
+    }, [user?.uid]);
 
     return (
         <div>

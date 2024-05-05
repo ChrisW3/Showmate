@@ -8,7 +8,7 @@ const Account = () => {
       <div className='w-full text-white'>
         <img
           className='w-full h-[400px] object-cover'
-          src="https://filmustage.com/static/7af770302675ef33a70ca822f19dbc1f/d89c6/Decoding-cinema---A-deep-dive-into-film-studies-and-its-language.webp"
+          src="login-bg.png"
           alt="" />
 
         <div className='bg-black/60 fixed top-0 left-0 w-full h-[550px]'></div>

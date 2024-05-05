@@ -14,16 +14,22 @@ export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   function signUp(email, password) {
-    createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, 'users', email), {
-      likedShows: [],
-      watchlistShows: []
-    }).then(() => {
-      console.log('Document successfully written!');
-    }).catch((error) => {
-      console.error('Error writing document: ', error);
-    });
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userInfo) => {
+        const uid = userInfo.user.uid;
+        console.log('User created with UID:', uid);
 
+        setDoc(doc(db, 'users', uid), {
+          likedShows: [],
+          watchlistShows: []
+        }).then(() => {
+          console.log('Document successfully written!');
+        }).catch((error) => {
+          console.error('Error writing document: ', error);
+        });
+      }).catch((error) => {
+        console.error('Error creating user:', error);
+      });
   }
 
   function logIn(email, password) {

@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../contents/AuthContext";
 import { useState } from "react";
+import GoogleSignIn from '../components/GoogleSignIn'
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ const Login = () => {
       <div className="w-full h-screen">
         <img
           className="hidden sm:block absolute w-full h-full object-cover"
-          src="https://filmustage.com/static/7af770302675ef33a70ca822f19dbc1f/d89c6/Decoding-cinema---A-deep-dive-into-film-studies-and-its-language.webp"
+          src="login-bg.png"
         />
         <div className="bg-black/50 fixed top-0 left-0 w-full h-screen"></div>
         <div className="fixed w-full px-4 py-24 z-50">
@@ -55,6 +56,7 @@ const Login = () => {
                   Sign In
                 </button>
               </form>
+              <GoogleSignIn />
             </div>
           </div>
         </div>

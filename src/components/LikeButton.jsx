@@ -9,11 +9,11 @@ const LikeButton = ({ item }) => {
     const [likedMovieList, setLikedMovieList] = useState([])
 
     const { user } = UserAuth();
-    const movieId = doc(db, 'users', `${user?.email}`)
+    const movieId = doc(db, 'users', `${user?.uid}`)
 
     const likeShow = async (e) => {
         e.stopPropagation();
-        if (user?.email) {
+        if (user?.uid) {
             setLike(!like)
             await updateDoc(movieId, {
                 likedShows: arrayUnion({
@@ -28,12 +28,12 @@ const LikeButton = ({ item }) => {
     }
 
     useEffect(() => {
-        onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
+        onSnapshot(doc(db, 'users', `${user?.uid}`), (doc) => {
             setLikedMovieList(doc.data()?.likedShows);
         })
-    }, [user?.email]);
+    }, [user?.uid]);
 
-    const movieRef = doc(db, 'users', `${user?.email}`)
+    const movieRef = doc(db, 'users', `${user?.uid}`)
     const removeLikeShow = async (passedID) => {
         try {
             const result = likedMovieList.filter((item) => item.id !== passedID)

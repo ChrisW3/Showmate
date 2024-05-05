@@ -11,11 +11,11 @@ const Movie = ({ item, img }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = UserAuth();
 
-  const movieId = doc(db, 'users', `${user?.email}`)
+  const movieId = doc(db, 'users', `${user?.uid}`)
 
   const likeShow = async (e) => {
     e.stopPropagation();
-    if (user?.email) {
+    if (user?.uid) {
       setLike(!like)
       await updateDoc(movieId, {
         likedShows: arrayUnion({

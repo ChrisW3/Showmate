@@ -65,8 +65,8 @@ const ChatMovieRecs = ({ moviePreferences }) => {
         }
     }
 
-    const fetchLikedMovies = async (userEmail) => {
-        const docRef = doc(db, 'users', userEmail);
+    const fetchLikedMovies = async (userId) => {
+        const docRef = doc(db, 'users', userId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -115,8 +115,8 @@ const ChatMovieRecs = ({ moviePreferences }) => {
 
     useEffect(() => {
         const fetchForYouMovies = async () => {
-            if (user?.email) {
-                const likedMovies = await fetchLikedMovies(user.email);
+            if (user?.uid) {
+                const likedMovies = await fetchLikedMovies(user.uid);
                 const promises = likedMovies.map(item => fetchSimilarMovies(item.id));
                 const similarMoviesArrays = await Promise.all(promises);
                 const forYouMovies = randomForYouMovies(similarMoviesArrays);
@@ -127,7 +127,7 @@ const ChatMovieRecs = ({ moviePreferences }) => {
         };
 
         fetchForYouMovies();
-    }, [user?.email]);
+    }, [user?.uid]);
 
 
     useEffect(() => {
@@ -137,13 +137,13 @@ const ChatMovieRecs = ({ moviePreferences }) => {
     }, [requests.requestTrending]);
 
     useEffect(() => {
-        onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
+        onSnapshot(doc(db, 'users', `${user?.uid}`), (doc) => {
             const likedMovies = doc.data()?.likedShows;
             if (!likedMovies || likedMovies.length === 0) {
                 setFypMovieList(trendingList);
             }
         });
-    }, [user?.email, trendingList]);
+    }, [user?.uid, trendingList]);
 
     const slideLeft = () => {
         var slider = document.getElementById("slider");

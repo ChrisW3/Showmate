@@ -29,7 +29,7 @@ const Navbar = () => {
           Showmate
         </h1>
       </Link>
-      {user?.email ? (
+      {user?.uid ? (
         <div>
           <button 
             className="bg-gray-600 rounded cursor-pointer text-white px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-sm md:px-6 md:py-2 md:text-base"
