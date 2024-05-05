@@ -26,7 +26,11 @@ const ForYouPageAlgo = ({ rowID }) => {
   };
 
   function filterMovies(movies) {
-    return movies.filter(movie => movie.original_language === 'en' && movie.backdrop_path !== null && movie.vote_average > 7);
+    return movies.filter(movie => 
+      movie.original_language === 'en' && 
+      movie.backdrop_path !== null && 
+      !movie.backdrop_path.includes('null') &&
+      movie.vote_average > 7);
   }
 
 
@@ -81,8 +85,10 @@ const ForYouPageAlgo = ({ rowID }) => {
 
   useEffect(() => {
     axios.get(requests.requestTrending).then((response) => {
-      setTrendingList(response.data.results);
+      const trendingValidMovies = filterMovies(response.data.results)
+      setTrendingList(trendingValidMovies);
     });
+    
   }, [requests.requestTrending]);
 
   useEffect(() => {
