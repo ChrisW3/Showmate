@@ -1,8 +1,16 @@
-# React + Vite
+# Showmate
+Showmate is a React web application designed to help users find Movies and TV Show recommendations through OpenAI-powered tools.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features
+Movie and TV Show Recommendations: Provides personalized suggestions based on user input.
 
-Currently, two official plugins are available:
+AI Chat Assistant: Integrated with OpenAI's API to generate viewing suggestions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+User Information Management: Uses Firebase to manage user data, including liked and watchlisted content.
+
+# Tech Stack
+Frontend: React, Tailwind CSS
+
+Backend: Firebase
+
+APIs: OpenAI, TMDB
